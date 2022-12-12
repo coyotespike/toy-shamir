@@ -34,6 +34,9 @@ fn random_polynomial(secret: u64, k: u64) -> Vec<u64> {
 
 fn evaluate_polynomial(x: u64, coefficients: &[u64]) -> u64 {
     let mut result = 0.0 as u64;
+    // evaluates each term, one at a time
+    // x^0, x^1, x^2
+    // need try_into().unwrap() because the exponentiation operator only works with u32
     for (i, &c) in coefficients.iter().enumerate() {
         result += (c * x.pow(i.try_into().unwrap())) as u64;
     }
@@ -52,6 +55,7 @@ struct Point {
     x: f64,
     y: f64,
 }
+// Sadly I don't understand Lagrange interpolation yet
 // https://gist.github.com/robertDurst/24d286725b70b54b90918238be495451
 // p must be larger than the secret
 fn interpolate(f: Vec<Point>, p: f64) -> f64 {
@@ -91,6 +95,7 @@ fn main() {
         points.push(Point { x: x as f64, y: y as f64 });
     }
 
+    // p must be larger than the secret
     let recovered_secret = interpolate(points, 100.0);
     println!("recovered secret: {}", recovered_secret);
 }

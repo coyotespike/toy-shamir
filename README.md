@@ -15,9 +15,11 @@ The secret will actually be a very long number in hexadecimal, 0xfa....b9d or so
 
 We want *n* shares, here 4, and a threshold of *k*, here 3.
 
-We want to build an equation that looks like $$y = a_0 + a_1 x + a_2 x^2$$.
+We want to build an equation that looks like $$y = a_0 + a_1 x + a_2 x^2$$
 
-We'll do $$y = secret + a_1 x + a_2 x^2$$. If we choose a random *a_1* and *a_2*, we have made a random curve.
+We'll do $$y = secret + a_1 x + a_2 x^2$$
+
+If we choose a random *a_1* and *a_2*, we have made a random curve.
 
 In addition, for each share, you can choose a random *x* - as long as every share uses the same constants/coefficients (the *a*'s) then they will all sit on the same line. And if they all sit on the same line, we can put it together to find the original secret.
 
