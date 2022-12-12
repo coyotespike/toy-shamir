@@ -60,3 +60,8 @@ function random_polynomial(secret, k)
 end function
 
 ```
+
+## Reassembling the Secret
+In practice, you might keep your own BTC private key, and distribute the shards among trusted friends and family.
+
+You could in theory destroy the original key, but you might as well use a multisig in that case.

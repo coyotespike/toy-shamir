@@ -23,6 +23,8 @@ fn random_polynomial(secret: u64, k: u64) -> Vec<u64> {
     let mut rng = rand::thread_rng();
     let mut poly = vec![];
     for _ in 0..k-1 {
+        // I limited the range to avoid overflow errors
+        // In real life we need to work with very large numbers
         poly.push(rng.gen_range(0..10000));
     }
     poly[0] = secret;
@@ -65,6 +67,7 @@ fn interpolate(f: Vec<Point>, p: f64) -> f64 {
         let mut term = f[i].y;
         // A good old nested for loop :)
         for j in 0..n {
+            // for each point, we look at all the other points
             if i != j {
                 // X's should be unique
                 assert!(f[i].x - f[j].x != 0.0);
